@@ -1,4 +1,5 @@
-﻿using NSE.WebApp.MVC.Services;
+﻿using NSE.WebApp.MVC.Extensions;
+using NSE.WebApp.MVC.Services;
 
 namespace NSE.WebApp.MVC.Configuration
 {
@@ -8,6 +9,12 @@ namespace NSE.WebApp.MVC.Configuration
         {
             // Registro do httpClient
             services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
+
+            // Cada request é uma representação unica. Uma única instância do serviço para toda a aplicação
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // Base no request especifico. Uma instância por requisição HTTP
+            services.AddScoped<IUser, AspNetUser>();
         }
         
     }
