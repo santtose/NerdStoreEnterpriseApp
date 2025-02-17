@@ -2,7 +2,7 @@
 
 namespace NSE.Catalogo.API.Models
 {
-    public interface IProdutorepository : IRepository<Produto>
+    public interface IProdutoRepository : IRepository<Produto>
     {
         Task<IEnumerable<Produto>> ObterTodos();
         Task<Produto> ObterPorId(Guid id);
