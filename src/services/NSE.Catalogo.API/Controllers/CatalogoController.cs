@@ -5,7 +5,7 @@ using NSE.Catalogo.API.Models;
 namespace NSE.Catalogo.API.Controllers
 {
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CatalogoController : Controller
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -21,8 +21,7 @@ namespace NSE.Catalogo.API.Controllers
         {
             return await _produtoRepository.ObterTodos();
         }
-
-        [AllowAnonymous]
+               
         //[ClaimsAuthorize("Catalogo", "Ler")]
         [HttpGet("catalogo/produtos/{id}")]
         public async Task<Produto> ProdutoDetalhe(Guid id)

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NSE.Identidade.API.Configuration;
+using NSE.WebAPI.Core.Identidade;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,8 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-app.UseAuthentication();
+app.UseAuthConfiguration();
 
 app.MapControllers();
 
