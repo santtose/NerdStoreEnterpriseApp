@@ -1,3 +1,4 @@
+using MediatR;
 using NSE.Clientes.API.Configuration;
 using NSE.WebAPI.Core.Identidade;
 
@@ -16,6 +17,8 @@ builder.Services.RegisterServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerConfiguration();
+
+builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
