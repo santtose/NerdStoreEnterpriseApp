@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NSE.Identidade.API.Configuration;
 using NSE.WebAPI.Core.Identidade;
 
@@ -23,6 +24,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerConfiguration();
+
+builder.Services.AddMessageBusConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
