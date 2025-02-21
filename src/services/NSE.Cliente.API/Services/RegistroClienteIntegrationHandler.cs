@@ -19,12 +19,27 @@ namespace NSE.Clientes.API.Services
             _bus = bus;
         }
 
+        // Para funcionar a tentativa de reconexão implementada no MessageBus. Nos últimos .NET não ha mais a necessidade
+        //private void SetResponder()
+        //{
+        //    _bus.RespondAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(async request =>
+        //        await RegistrarCliente(request));
+
+        //    _bus.AdvancedBus.Connected += OnConnect;
+        //}
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             await _bus.RespondAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(RegistrarCliente);
-
+            //Se for usar, tirar o codigo acima, pois estará no SetResponder()
+            //SetResponder();
             await Task.CompletedTask;            
         }
+
+        //private void OnConnect(object s, EventArgs e)
+        //{
+        //    SetResponder();
+        //}
 
         private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistradoIntegrationEvent message)
         {

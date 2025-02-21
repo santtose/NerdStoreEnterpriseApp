@@ -89,8 +89,22 @@ namespace NSE.MessageBus
             policy.Execute(() =>
             {
                 _bus = RabbitHutch.CreateBus(_connectionString);
+
+                //_advancedBus = _bus.Advanced;
+                //_advancedBus.Disconnected += OnDisconnect;
             });
         }
+
+        // Essa funcao serve para reconectar o EasyNetQ caso caia o Rabbit, por exemplo. Porém, nas últimas versões do .NET, esse 
+        // tipo de implementação é desnecessaria
+        //private void OnDisconnect(object s, EventArgs e)
+        //{
+        //    var policy = Policy.Handle<EasyNetQException>()
+        //        .Or<BrokerUnreachableException>()
+        //        .RetryForever();
+
+        //    policy.Execute(TryConnect);
+        //}
 
         public void Dispose()
         {
