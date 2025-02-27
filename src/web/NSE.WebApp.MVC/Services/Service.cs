@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text;
 using NSE.WebApp.MVC.Extensions;
-using NSE.WebApp.MVC.Models;
+using NSE.Core.Communication;
 
 namespace NSE.WebApp.MVC.Services
 {

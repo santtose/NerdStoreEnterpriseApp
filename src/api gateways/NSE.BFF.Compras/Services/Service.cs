@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using System.Text;
+using NSE.Core.Communication;
 
 namespace NSE.BFF.Compras.Services
 {
@@ -30,6 +31,11 @@ namespace NSE.BFF.Compras.Services
 
             response.EnsureSuccessStatusCode();
             return true;
+        }
+
+        protected ResponseResult RetornoOk()
+        {
+            return new ResponseResult();
         }
     }
 }
