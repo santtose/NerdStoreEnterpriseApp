@@ -38,7 +38,7 @@ namespace NSE.WebApp.MVC.Services
         {
             var itemContent = ObterConteudo(produto);
 
-            var response = await _httpClient.PutAsync($"/carrinho/{produto.ProdutoId}", itemContent);
+            var response = await _httpClient.PutAsync($"/carrinho/{produtoId}", itemContent);
 
             if (!TratarErrosResponse(response)) return await DeserializarObjetoResponse<ResponseResult>(response);
 
