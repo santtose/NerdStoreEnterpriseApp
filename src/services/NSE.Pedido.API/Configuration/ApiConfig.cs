@@ -1,4 +1,6 @@
-﻿using NSE.WebAPI.Core.Identidade;
+﻿using Microsoft.EntityFrameworkCore;
+using NSE.Pedidos.Infra.Data;
+using NSE.WebAPI.Core.Identidade;
 
 namespace NSE.Pedido.API.Configuration
 {
@@ -6,8 +8,8 @@ namespace NSE.Pedido.API.Configuration
     {
         public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<CarrinhoContext>(options =>
-            //    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PedidosContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
 
