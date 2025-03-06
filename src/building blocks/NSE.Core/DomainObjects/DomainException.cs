@@ -1,4 +1,6 @@
-﻿namespace NSE.Core.DomainObjects
+﻿using System;
+
+namespace NSE.Core.DomainObjects
 {
     public class DomainException : Exception
     {

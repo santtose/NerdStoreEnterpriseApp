@@ -1,4 +1,6 @@
-﻿namespace NSE.Core.Messages.Integration
+﻿using System;
+
+namespace NSE.Core.Messages.Integration
 {
     public class UsuarioRegistradoIntegrationEvent : IntegrationEvent
     {

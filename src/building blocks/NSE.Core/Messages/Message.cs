@@ -1,4 +1,6 @@
-﻿namespace NSE.Core.Messages
+﻿using System;
+
+namespace NSE.Core.Messages
 {
     // Classe base para os comandos
     public abstract class Message

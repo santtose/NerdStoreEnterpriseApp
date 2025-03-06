@@ -1,4 +1,5 @@
 ﻿using NSE.Core.DomainObjects;
+using System;
 
 namespace NSE.Core.Data
 {
