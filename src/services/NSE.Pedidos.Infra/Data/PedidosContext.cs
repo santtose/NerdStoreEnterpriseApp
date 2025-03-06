@@ -19,8 +19,8 @@ namespace NSE.Pedidos.Infra.Data
             _mediatorHandler = mediatorHandler;
         }
 
-        public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<PedidoItem> PedidoItems { get; set; }
+        //public DbSet<Pedido> Pedidos { get; set; }
+        //public DbSet<PedidoItem> PedidoItems { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

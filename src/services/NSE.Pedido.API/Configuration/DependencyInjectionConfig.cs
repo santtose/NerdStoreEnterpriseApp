@@ -1,6 +1,8 @@
-﻿using NSE.WebAPI.Core.Usuario;
+﻿using NSE.Core.Mediator;
+using NSE.Pedidos.Infra.Data;
+using NSE.WebAPI.Core.Usuario;
 
-namespace NSE.Pedido.API.Configuration
+namespace NSE.Pedidos.API.Configuration
 {
     public static class DependencyInjectionConfig
     {
@@ -8,6 +10,12 @@ namespace NSE.Pedido.API.Configuration
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAspNetUser, AspNetUser>();
+
+            // Application
+            services.AddScoped<IMediatorHandler, MediatorHandler>();
+
+            //Data
+            services.AddScoped<PedidosContext>();
         }
     }
 }
