@@ -37,6 +37,11 @@ namespace NSE.Pedidos.Domain.Pedidos
         // EF Rel.
         public Voucher Voucher { get; private set; }
 
+        public void AutorizarPedido()
+        {
+            PedidoStatus = PedidoStatus.Autorizado;
+        }
+
         public void AtribuirVoucher(Voucher voucher)
         {
             VoucherUtilizado = true;
