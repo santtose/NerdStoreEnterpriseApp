@@ -1,4 +1,5 @@
-﻿using NSE.Core.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NSE.Core.Data;
 using NSE.Pedidos.Domain.Pedidos;
 using System.Data.Common;
 
@@ -15,44 +16,45 @@ namespace NSE.Pedidos.Infra.Data.Repository
 
         public IUnitOfWork UnitOfWork => _context;
 
+        public DbConnection ObterConexao() => _context.Database.GetDbConnection();
+
+        public async Task<Pedido> ObterPorId(Guid id)
+        {
+            return await _context.Pedidos.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Pedido>> ObterListaPorClienteId(Guid clienteId)
+        {
+            return await _context.Pedidos
+                .Include(p => p.PedidoItems)
+                .AsNoTracking()
+                .Where(p => p.ClienteId == clienteId)
+                .ToListAsync();
+        }
+
         public void Adicionar(Pedido pedido)
         {
-            throw new NotImplementedException();
+            _context.Pedidos.Add(pedido);
         }
 
         public void Atualizar(Pedido pedido)
         {
-            throw new NotImplementedException();
+            _context.Pedidos.Update(pedido);
+        }         
+
+        public async Task<PedidoItem> ObterItemPorId(Guid id)
+        {
+            return await _context.PedidoItems.FindAsync(id);
         }
+
+        public async Task<PedidoItem> ObterItemPorPedido(Guid pedidoId, Guid produtoId)
+        {
+            return await _context.PedidoItems.FirstOrDefaultAsync(p => p.ProdutoId == produtoId && p.PedidoId == pedidoId);
+        }              
 
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
-
-        public DbConnection ObterConexao()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PedidoItem> ObterItemPorId(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PedidoItem> ObterItemPorPedido(Guid pedidoId, Guid produtoId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Pedido>> ObterListaPorClienteId(Guid clienteId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Pedido> ObterPorId(Guid id)
-        {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }

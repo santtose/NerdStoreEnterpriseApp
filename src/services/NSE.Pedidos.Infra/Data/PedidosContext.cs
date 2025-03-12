@@ -19,8 +19,8 @@ namespace NSE.Pedidos.Infra.Data
             _mediatorHandler = mediatorHandler;
         }
 
-        //public DbSet<Pedido> Pedidos { get; set; }
-        //public DbSet<PedidoItem> PedidoItems { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<PedidoItem> PedidoItems { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace NSE.Pedidos.Infra.Data
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
-            //modelBuilder.HasSequence<int>("MinhaSequencia").StartsAt(1000).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("MinhaSequencia").StartsAt(1000).IncrementsBy(1);
 
             base.OnModelCreating(modelBuilder);
         }
