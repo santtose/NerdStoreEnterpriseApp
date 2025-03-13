@@ -21,6 +21,8 @@ builder.Services.AddSwaggerConfiguration();
 
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddMessageBusConfiguration(builder.Configuration);
+
 var app = builder.Build();
 
 app.UseSwaggerConfiguration();

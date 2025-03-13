@@ -2,6 +2,7 @@
 using NSE.Clientes.API.Data.Repository;
 using NSE.Clientes.API.Models;
 using NSE.Core.Mediator;
+using NSE.WebAPI.Core.Usuario;
 
 namespace NSE.Clientes.API.Configuration
 {
@@ -14,10 +15,13 @@ namespace NSE.Clientes.API.Configuration
         /// <param name="services"></param>
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
             services.AddScoped<IMediatorHandler, MediatorHandler>();
 
             // Registra que o RegistrarClienteCommand será entregue via IRequestHandler e que vai retornar um ValidationResult será manipulado pelo ClienteCommandHandler, isso via MediaTr
             //services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
+            //services.AddScoped<IRequestHandler<AdicionarEnderecoCommand, ValidationResult>, ClienteCommandHandler>();
             //services.AddScoped<INotificationHandler<ClienteRegistradoEvent>, ClienteEventHandler>();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
