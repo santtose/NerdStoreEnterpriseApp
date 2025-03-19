@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using NSE.Core.Messages;
 using NSE.Pedidos.API.Application.DTO;
+using System;
+using System.Collections.Generic;
 
 namespace NSE.Pedidos.API.Application.Commands
 {
@@ -9,15 +11,15 @@ namespace NSE.Pedidos.API.Application.Commands
         // Pedido
         public Guid ClienteId { get; set; }
         public decimal ValorTotal { get; set; }
-        public List<PedidoItemDTO> PedidoItems { get; set; }
+        public List<PedidoItemDTO> PedidoItems { get; set; } = new List<PedidoItemDTO>();
 
         // Voucher
-        public string VoucherCodigo { get; set; }
+        public string? VoucherCodigo { get; set; }
         public bool VoucherUtilizado { get; set; }
         public decimal Desconto { get; set; }
 
         // Endereco
-        public EnderecoDTO Endereco { get; set; }
+        public EnderecoDTO? Endereco { get; set; }
 
         // Cartao
         public string NumeroCartao { get; set; }

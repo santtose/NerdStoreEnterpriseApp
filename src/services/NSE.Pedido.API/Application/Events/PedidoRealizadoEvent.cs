@@ -1,4 +1,5 @@
 ﻿using NSE.Core.Messages;
+using System;
 
 namespace NSE.Pedidos.API.Application.Events
 {

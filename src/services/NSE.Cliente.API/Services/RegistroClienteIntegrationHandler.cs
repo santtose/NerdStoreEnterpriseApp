@@ -43,9 +43,8 @@ namespace NSE.Clientes.API.Services
 
         private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistradoIntegrationEvent message)
         {
-            ValidationResult sucesso;
-
             var clienteCommand = new RegistrarClienteCommand(message.Id, message.Nome, message.Email, message.Cpf);
+            ValidationResult sucesso;            
 
             // Por ser Singleton, precisa trabalhar por scopo, pois o mediatR é resolvido com AddScoped
             using (var scope = _serviceProvider.CreateScope())

@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using NSE.Core.Messages.Integration;
 using NSE.MessageBus;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.API.Application.Events
 {

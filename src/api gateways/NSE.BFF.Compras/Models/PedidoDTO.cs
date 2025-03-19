@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using NSE.Core.Validation;
 
 namespace NSE.BFF.Compras.Models
 {
@@ -18,16 +19,16 @@ namespace NSE.BFF.Compras.Models
         public decimal ValorTotal { get; set; }
 
         public decimal Desconto { get; set; }
-        public string VoucherCodigo { get; set; }
+        public string? VoucherCodigo { get; set; }
         public bool VoucherUtilizado { get; set; }
 
-        public List<ItemCarrinhoDTO> PedidoItems { get; set; }
+        public List<ItemCarrinhoDTO> PedidoItems { get; set; } = new List<ItemCarrinhoDTO>();
 
         #endregion
 
         #region Endereco
 
-        public EnderecoDTO Endereco { get; set; }
+        public EnderecoDTO? Endereco { get; set; }
 
         #endregion
 
@@ -42,7 +43,7 @@ namespace NSE.BFF.Compras.Models
         public string NomeCartao { get; set; }
 
         [RegularExpression(@"(0[1-9]|1[0-2])\/[0-9]{2}", ErrorMessage = "O vencimento deve estar no padrão MM/AA")]
-        //[CartaoExpiracao(ErrorMessage = "Cartão Expirado")]
+        [CartaoExpiracao(ErrorMessage = "Cartão Expirado")]
         [Required(ErrorMessage = "Informe o vencimento")]
         [DisplayName("Data de Vencimento MM/AA")]
         public string ExpiracaoCartao { get; set; }

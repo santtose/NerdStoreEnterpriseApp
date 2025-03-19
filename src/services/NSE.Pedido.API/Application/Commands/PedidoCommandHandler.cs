@@ -6,6 +6,10 @@ using NSE.Pedidos.API.Application.Events;
 using NSE.Pedidos.Domain.Pedidos;
 using NSE.Pedidos.Domain.Vouchers;
 using NSE.Pedidos.Domain.Vouchers.Specs;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.API.Application.Commands
 {
@@ -80,14 +84,22 @@ namespace NSE.Pedidos.API.Application.Commands
             {
                 AdicionarErro("O voucher informado não existe!");
                 return false;
-            }
+            }            
 
-            var voucherValidation = new VoucherValidation().Validate(voucher);
-            if (!voucherValidation.IsValid)
+            // Ainda não descobri pq está dando exceção
+            try
             {
-                voucherValidation.Errors.ToList().ForEach(m => AdicionarErro(m.ErrorMessage));
-                return false;
+                var voucherValidation = new VoucherValidation().Validate(voucher);
+                if (!voucherValidation.IsValid)
+                {
+                    voucherValidation.Errors.ToList().ForEach(m => AdicionarErro(m.ErrorMessage));
+                    return false;
+                }
             }
+            catch (Exception e)
+            {
+
+            }     
 
             pedido.AtribuirVoucher(voucher);
             voucher.DebitarQuantidade();

@@ -1,6 +1,10 @@
 using MediatR;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NSE.Pedidos.API.Configuration;
 using NSE.WebAPI.Core.Identidade;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
