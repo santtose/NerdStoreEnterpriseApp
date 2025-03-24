@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Catalogo.API", "src\ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Clientes.API", "src\services\NSE.Cliente.API\NSE.Clientes.API.csproj", "{CD077E36-D052-44CA-B1BF-A2EBD56914CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Pagamento.API", "src\services\NSE.Pagamento.API\NSE.Pagamento.API.csproj", "{9FD4F550-1642-4673-9BFC-0EAEDDC3F848}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Pagamentos.API", "src\services\NSE.Pagamento.API\NSE.Pagamentos.API.csproj", "{9FD4F550-1642-4673-9BFC-0EAEDDC3F848}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSE.Pedidos.API", "src\services\NSE.Pedido.API\NSE.Pedidos.API.csproj", "{DB625ACD-86ED-4055-8DEF-86FB6F191ABD}"
 EndProject
