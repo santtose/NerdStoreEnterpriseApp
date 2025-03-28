@@ -18,16 +18,6 @@ namespace NSE.WebApp.MVC.Controllers
             return View("Error", modelErro);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [Route("erro/{id:length(3,3)}")]
         public IActionResult Error(int id)
         {

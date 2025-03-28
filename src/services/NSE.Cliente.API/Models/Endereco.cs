@@ -27,5 +27,8 @@ namespace NSE.Clientes.API.Models
             Estado = estado;
             ClienteId = clienteId;
         }
+
+        // EF Constructor
+        protected Endereco() { }
     }
 }

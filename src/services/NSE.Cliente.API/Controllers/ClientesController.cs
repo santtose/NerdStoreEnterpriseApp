@@ -20,15 +20,6 @@ namespace NSE.Clientes.API.Controllers
             _user = user;
         }
 
-        [HttpGet("clientes")]
-        public async Task<IActionResult> Index()
-        {
-            var resultado = await _mediator.EnviarComando(
-                new RegistrarClienteCommand(Guid.NewGuid(), "Chubasa", "chu@edu.com", "20743923030"));
-
-            return CustomResponse(resultado);
-        }
-
         [HttpGet("cliente/endereco")]
         public async Task<IActionResult> ObterEndereco()
         {

@@ -14,7 +14,10 @@ namespace NSE.WebApp.MVC.Configuration
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IValidationAttributeAdapterProvider, CpfValidationAttributeAdapterProvider>();
+
+            // Cada request é uma representação unica. Uma única instância do serviço para toda a aplicação
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // Base no request especifico. Cria uma única instância por requisição (scope).
             services.AddScoped<IAspNetUser, AspNetUser>();
 
             // Cria uma nova instância sempre que o serviço for solicitado.
@@ -56,11 +59,6 @@ namespace NSE.WebApp.MVC.Configuration
 
             #endregion
 
-            // Cada request é uma representação unica. Uma única instância do serviço para toda a aplicação
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            // Base no request especifico. Cria uma única instância por requisição (scope).
-            services.AddScoped<IAspNetUser, AspNetUser>();
         }
 
         public static class PollyExtensions

@@ -18,7 +18,7 @@ namespace NSE.Pagamentos.API.Facade
 
         public async Task<Transacao> AutorizarPagamento(Pagamento pagamento)
         {
-            var nerdsPagSvc = new NerdsPagService(_pagamentoConfig.DefaultEncryptionKey, _pagamentoConfig.DefaultEncryptionKey);
+            var nerdsPagSvc = new NerdsPagService(_pagamentoConfig.DefaultApiKey, _pagamentoConfig.DefaultEncryptionKey);
 
             var cardHashGen = new CardHash(nerdsPagSvc)
             {
