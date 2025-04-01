@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NetDevPack.Security.JwtSigningCredentials.AspNetCore;
 using NSE.Identidade.API.Configuration;
 using NSE.WebAPI.Core.Identidade;
 
@@ -19,7 +20,7 @@ if (builder.Environment.IsDevelopment())
 
 builder.Services.AddIdentityConfiguration(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddApiConfiguration();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -39,5 +40,8 @@ app.UseHttpsRedirection();
 app.UseAuthConfiguration();
 
 app.MapControllers();
+
+//visualizar ex: localhost:12345/jwks
+app.UseJwksDiscovery();
 
 app.Run();
