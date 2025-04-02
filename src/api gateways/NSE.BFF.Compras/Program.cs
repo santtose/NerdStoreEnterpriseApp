@@ -20,6 +20,8 @@ builder.Services.AddSwaggerConfiguration();
 
 builder.Services.AddMessageBusConfiguration(builder.Configuration);
 
+builder.Services.ConfigureGrpcServices(builder.Configuration);
+
 var app = builder.Build();
 
 app.UseSwaggerConfiguration();
