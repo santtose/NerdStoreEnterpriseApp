@@ -1,23 +1,24 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/services/NSE.Carrinho.API/NSE.Carrinho.API.csproj", "src/services/NSE.Carrinho.API/"]
-RUN dotnet restore "./src/services/NSE.Carrinho.API/NSE.Carrinho.API.csproj"
+COPY ["./services/NSE.Carrinho.API/NSE.Carrinho.API.csproj", "services/NSE.Carrinho.API/"]
+COPY ["./building blocks/NSE.Core/NSE.Core.csproj", "building blocks/NSE.WebAPI.Core/"]
+COPY ["./building blocks/NSE.WebAPI.Core/NSE.WebAPI.Core.csproj", "building blocks/NSE.WebAPI.Core/"]
+COPY ["./building blocks/NSE.MessageBus/NSE.MessageBus.csproj", "building blocks/NSE.MessageBus/"]
+
+RUN dotnet restore "services/NSE.Carrinho.API/NSE.Carrinho.API.csproj"
 COPY . .
-WORKDIR "/src/src/services/NSE.Carrinho.API"
-RUN dotnet build "./NSE.Carrinho.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "services/NSE.Carrinho.API"
+RUN dotnet build "NSE.Carrinho.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./NSE.Carrinho.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "NSE.Carrinho.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

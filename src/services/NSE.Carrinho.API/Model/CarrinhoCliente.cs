@@ -23,14 +23,14 @@ namespace NSE.Carrinho.API.Model
             ClienteId = clienteId;
         }
 
+        public CarrinhoCliente() { }
+
         public void AplicarVoucher(Voucher voucher)
         {
             Voucher = voucher;
             VoucherUtilizado = true;
             CalcularValorCarrinho();
-        }
-
-        public CarrinhoCliente() { }
+        }        
 
         internal void CalcularValorCarrinho()
         {
