@@ -1,4 +1,5 @@
-﻿using NSE.WebApp.MVC.Extensions;
+﻿using Microsoft.AspNetCore.HttpOverrides;
+using NSE.WebApp.MVC.Extensions;
 
 namespace NSE.WebApp.MVC.Configuration
 {
@@ -7,11 +8,20 @@ namespace NSE.WebApp.MVC.Configuration
         public static void AddMvcConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllersWithViews();
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
             services.Configure<AppSettings>(configuration);
         }
 
         public static void UseMvcConfiguration(this WebApplication app)
         {
+            app.UseForwardedHeaders();
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/erro/500");
